@@ -1,8 +1,9 @@
 package ru.home;
 
+import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 
-abstract class Aninal {
+abstract class Animal {
 
     double runRestriction;
     double swimRestriction;
@@ -25,16 +26,18 @@ abstract class Aninal {
 
     private void doIt(double value, double restriction) {
 
-        if (value < 0 ) {
-            System.out.println("Неверные входные данные: " + value);
-            return;
-        }
-
         String classname = this.getClass().getSimpleName();
         String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
 
+        if (value < 0 ) {
+            System.out.println(
+                    String.format("%1$s.%2$s(%3$.1f): Bad input params",
+                            classname, methodName, value));
+            return;
+        }
 
-        String res = String.format("%1$s.%2$s(%3$.1f): ",classname, methodName, value);
+
+        String res = String.format("%1$s.%2$s(%3$.1f): ", classname, methodName, value);
 
         if (value < restriction)
             System.out.println(res + "OK");
@@ -47,7 +50,7 @@ abstract class Aninal {
 
 // ==========================================
 
-class Cat extends Aninal {
+class Cat extends Animal {
 
     Cat() {
 
@@ -60,7 +63,7 @@ class Cat extends Aninal {
 
 // ==========================================
 
-class Dog extends Aninal {
+class Dog extends Animal {
 
     Dog() {
         runRestriction = ThreadLocalRandom.current().nextDouble(400, 600);
@@ -74,8 +77,8 @@ class TestAnimals {
 
     static void test() {
 
-        Aninal cat = new Cat();
-        Aninal dog = new Dog();
+        Animal cat = new Cat();
+        Animal dog = new Dog();
 
         cat.run(400);
         cat.run(100);
@@ -95,6 +98,10 @@ class TestAnimals {
 
         dog.jump(1);
         dog.jump(0.4);
+
+        System.out.println();
+
+        cat.run(-5.4);
 
     }
 }
