@@ -10,7 +10,7 @@ import java.awt.*;
 public class App 
 {
     /**
-     * Честно скопипизжено с <a href="https://www.javacodex.com/Swing/Calculator">javacodex.com</a>
+     * Честно взято с <a href="https://www.javacodex.com/Swing/Calculator">javacodex.com</a>
      */
     public static void main( String[] args )
     {
