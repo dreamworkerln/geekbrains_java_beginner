@@ -61,6 +61,7 @@ public class AIPlayer extends Player{
 
                 int my;
                 int enemy;
+                int free;
                 int cost = 0;
 
                 int enemyId = id == 1 ? 2 : 1;
@@ -68,6 +69,7 @@ public class AIPlayer extends Player{
                 // check row
                 my = 0;
                 enemy = 0;
+                free = 0;
                 for (int k = 0; k < size; k++) {
 
                     if (map[k][j] == id) {
@@ -76,12 +78,17 @@ public class AIPlayer extends Player{
                     if (map[k][j] == enemyId) {
                         enemy++;
                     }
+                    if (map[k][j] == 0) {
+                        free++;
+                    }
+
                 }
-                cost += calcCost(my, enemy);
+                cost += calcCost(my, enemy, free);
 
                 // check column
                 my = 0;
                 enemy = 0;
+                free = 0;
                 for (int k = 0; k < size; k++) {
 
 
@@ -91,13 +98,17 @@ public class AIPlayer extends Player{
                     if (map[i][k] == enemyId) {
                         enemy++;
                     }
+                    if (map[i][k] == 0) {
+                        free++;
+                    }
                 }
-                cost += calcCost(my, enemy);
+                cost += calcCost(my, enemy, free);
 
 
                 // check main diagonal
                 my = 0;
                 enemy = 0;
+                free = 0;
                 if(i == j) {
                     for (int k = 0; k < size; k++) {
 
@@ -108,12 +119,16 @@ public class AIPlayer extends Player{
                         if (map[k][k] == enemyId) {
                             enemy++;
                         }
+                        if (map[k][k] == 0) {
+                            free++;
+                        }
                     }
-                    cost += calcCost(my, enemy);
+                    cost += calcCost(my, enemy, free);
                 }
                 // check secondary diagonal
                 my = 0;
                 enemy = 0;
+                free = 0;
                 if(i == size - 1 - j) {
                     for (int k = 0; k < size; k++) {
 
@@ -124,8 +139,11 @@ public class AIPlayer extends Player{
                         if (map[k][size - 1 - k] == enemyId) {
                             enemy++;
                         }
+                        if (map[k][size - 1 - k] == 0) {
+                            free++;
+                        }
                     }
-                    cost += calcCost(my, enemy);
+                    cost += calcCost(my, enemy, free);
                 }
 
                 // check center  // <= didn't help much
@@ -160,7 +178,7 @@ public class AIPlayer extends Player{
     }
 
 
-    private int calcCost(int my, int enemy) {
+    private int calcCost(int my, int enemy, int free) {
 
         int result = 0;
 
@@ -171,6 +189,9 @@ public class AIPlayer extends Player{
         if(my == 1) {
             result = 5;
         }
+        if(my == 1 && free == 2) {
+            result = 6;
+        }
 
         if(enemy == 2) {
             result = 10;
@@ -178,6 +199,10 @@ public class AIPlayer extends Player{
         if(enemy == 1) {
             result = 4;
         }
+
+
+
+
 
         return result;
     }
