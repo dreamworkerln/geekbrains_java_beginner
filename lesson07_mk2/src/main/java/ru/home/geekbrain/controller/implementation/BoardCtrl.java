@@ -104,6 +104,7 @@ public class BoardCtrl implements BoardApi {
         int[][] map = board.map;
 
 
+        //ToDo: need to rewrite to use board.size if board have dimension != 3
         if(
                 (map[0][0] == id && map[0][1] == id && map[0][2] == id) ||
                 (map[1][0] == id && map[1][1] == id && map[1][2] == id) ||

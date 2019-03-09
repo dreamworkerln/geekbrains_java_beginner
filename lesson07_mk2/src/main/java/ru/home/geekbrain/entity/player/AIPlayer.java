@@ -46,10 +46,6 @@ public class AIPlayer extends Player{
 
         int size = map.length;
 
-        int x = -1;
-        int y = -1;
-
-
         int[][] costMap = new int[size][size];
 
         for (int i = 0; i < size; i++) {
@@ -157,6 +153,9 @@ public class AIPlayer extends Player{
             }
 
         }
+
+        int x = size / 2;
+        int y = size / 2;
 
         // get most valuable move
         int max = 0;
