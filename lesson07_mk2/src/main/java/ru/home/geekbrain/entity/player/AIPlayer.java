@@ -146,10 +146,10 @@ public class AIPlayer extends Player{
                     cost += calcCost(my, enemy, free);
                 }
 
-                // check center  // <= didn't help much
-                if (i== 1 && j== 1) {
-                    cost++;
-                }
+//                // check center  // <= didn't help much
+//                if (i== 1 && j== 1) {
+//                    cost++;
+//                }
 
 
 
@@ -184,17 +184,18 @@ public class AIPlayer extends Player{
 
 
         if(my == 2) {
-            result = 20;
+            result = 25;
         }
         if(my == 1) {
             result = 5;
         }
+        
         if(my == 1 && free == 2) {
             result = 6;
         }
 
         if(enemy == 2) {
-            result = 10;
+            result = 15;
         }
         if(enemy == 1) {
             result = 4;
